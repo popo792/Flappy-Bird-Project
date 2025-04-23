@@ -50,9 +50,5 @@ bool Pillar::checkCollision(const QRect &bird, const QVector<QRect> &pipes) {
         if (bird.intersects(pipes[i]))
             return true;
     }
-   // for (const QRect &pipe : pipes) {
-     //   if (bird.intersects(pipe))
-      //      return true;
-    //}
     return false;
 }
