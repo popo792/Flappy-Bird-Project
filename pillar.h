@@ -11,4 +11,4 @@ public:
     static bool checkCollision(const QRect &bird, const QVector<QRect> &pipes);
 };
 
-#endif // PILLAR_H
+#endif 
