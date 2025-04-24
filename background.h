@@ -13,5 +13,5 @@ public:
     void draw(QPainter &painter, int width, int height);
 };
 
-#endif // BACKGROUND_H
+#endif 
 
