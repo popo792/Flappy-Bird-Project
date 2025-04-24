@@ -17,8 +17,8 @@ private:
     QRect rect;
     int velocity;
 
-    friend class MainWindow; // if MainWindow needs direct access
+    friend class MainWindow; 
 };
 
-#endif // BIRD_H
+#endif 
 
