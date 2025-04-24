@@ -3,18 +3,15 @@
 
 QVector<QRect> Pillar::generateInitial(int count, int screenHeight) {
     QVector<QRect> pipes;
-    int gapHeight = 215;
-    int pipeWidth = 100;
-    int spacing = 300; // space between pipe pairs
+    int gapHeight = 200;
+    int pipeWidth = 50;
+    int spacing = 300;
 
     for (int i = 0; i < count; ++i) {
         int gapY = QRandomGenerator::global()->bounded(100, screenHeight - gapHeight - 100);
-        int xPos = 500 + (i * spacing);
+        int xPos = 500 + i * spacing;
 
-        // Top pipe
         pipes.append(QRect(xPos, 0, pipeWidth, gapY));
-
-        // Bottom pipe
         pipes.append(QRect(xPos, gapY + gapHeight, pipeWidth, screenHeight - (gapY + gapHeight)));
     }
 
@@ -23,31 +20,28 @@ QVector<QRect> Pillar::generateInitial(int count, int screenHeight) {
 
 void Pillar::movePipes(QVector<QRect> &pipes, int screenWidth, int screenHeight) {
     int gapHeight = 200;
-    int pipeWidth = 100;
-    int spacing = 300; // same as generateInitial
+    int pipeWidth = 50;
+    int spacing = 300;
 
     for (int i = 0; i < pipes.size(); ++i) {
         pipes[i].translate(-3, 0);
     }
-
-    // Remove first pair if out of screen
     if (!pipes.isEmpty() && pipes.first().right() < 0) {
         pipes.removeFirst();
         pipes.removeFirst();
 
-        // Add a new pipe pair
         int gapY = QRandomGenerator::global()->bounded(100, screenHeight - gapHeight - 100);
-        int lastX = pipes[pipes.size() - 2].x(); // second last pipe's x (because last is bottom of pair)
+        int lastX = pipes[pipes.size() - 2].x();
         int newX = lastX + spacing;
 
-        pipes.append(QRect(newX, 0, pipeWidth, gapY)); // top
-        pipes.append(QRect(newX, gapY + gapHeight, pipeWidth, screenHeight - (gapY + gapHeight))); // bottom
+        pipes.append(QRect(newX, 0, pipeWidth, gapY));
+        pipes.append(QRect(newX, gapY + gapHeight, pipeWidth, screenHeight - (gapY + gapHeight)));
     }
 }
 
 bool Pillar::checkCollision(const QRect &bird, const QVector<QRect> &pipes) {
-    for (int i = 0; i < pipes.size(); ++i) {
-        if (bird.intersects(pipes[i]))
+    for (const QRect &pipe : pipes) {
+        if (bird.intersects(pipe))
             return true;
     }
     return false;
