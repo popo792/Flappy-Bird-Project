@@ -1,5 +1,5 @@
 
-# Flappy Bird Game in Qt Creator using C++ (OOP)
+# Flappy Bird Game in Qt Creator 16.0.1 using C++ (OOP)
 
 ## 1. Introduction
 This project is a simple Flappy Bird clone developed using C++ with Object-Oriented Programming principles in Qt Creator. 
